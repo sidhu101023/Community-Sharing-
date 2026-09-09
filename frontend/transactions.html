@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ShareHub - Transactions</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/resources.css"
+    >
+    <link rel="stylesheet" href="./css/transactions.css">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <h1>ShareHub</h1>
+        <p>Share More, Waste Less</p>
+    </div>
+
+    <nav>
+
+        <a
+            href="resources.html"
+            class="active"
+        >
+            Resources
+        </a>
+
+        <a href="resources.html">
+            Add Resources
+        </a>
+
+        <a href="transactions.html">
+            Transactions
+        </a>
+
+    </nav>
+
+    <button
+        id="profileBtn"
+        class="profile-button"
+    >
+        👤
+    </button>
+
+</header>
+
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h3>All Categories</h3>
+
+        <button class="category active">
+            All Resources
+        </button>
+
+        <button class="category">
+            Mobile & Computer
+        </button>
+
+        <button class="category">
+            TV, Appliances & Electronics
+        </button>
+
+        <button class="category">
+            Sports
+        </button>
+
+        <button class="category">
+            Men's
+        </button>
+
+        <button class="category">
+            Women's
+        </button>
+
+        <button class="category">
+            Kids
+        </button>
+
+        <button class="category">
+            Books
+        </button>
+
+        <button class="category">
+            Home & Furniture
+        </button>
+
+        <button class="category">
+            Art
+        </button>
+
+    </aside>
+
+<div id="mapModal" class="modal hidden">
+
+    <div class="map-content">
+
+        <button
+            id="closeMap"
+            class="close"
+        >
+            ×
+        </button>
+
+        <h2>Select Location</h2>
+
+        <p>Click on the map to select your location.</p>
+
+        <div id="map"></div>
+
+        <button id="confirmLocation">
+            Confirm Location
+        </button>
+
+    </div>
+
+</div>
+    <!-- MAIN -->
+
+    <main class="main">
+
+    <h1>Transactions</h1>
+
+    <p>
+        Manage your requests and resources
+    </p>
+
+
+    <!-- MY REQUESTS -->
+
+    <section class="transaction-section">
+
+        <h2>My Requests</h2>
+
+        <div class="tabs">
+
+            <button
+                class="request-tab active"
+                data-status="Pending"
+            >
+                Pending
+            </button>
+
+            <button
+                class="request-tab"
+                data-status="Approved"
+            >
+                Approved
+            </button>
+
+            <button
+                class="request-tab"
+                data-status="Rejected"
+            >
+                Rejected
+            </button>
+
+            <button class="request-tab" data-status="Cancelled">Cancelled</button>
+            <button class="request-tab" data-status="Completed">Completed</button>
+
+        </div>
+
+        <div id="myRequests"></div>
+
+    </section>
+
+
+    <!-- MY RESOURCES -->
+
+    <section class="transaction-section">
+
+        <h2>My Resources</h2>
+
+        <div id="myResources"></div>
+
+    </section>
+
+</main>
+
+</div>
+
+
+<!-- ADD RESOURCE MODAL -->
+
+<div
+    id="resourceModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+        <button
+            id="closeResourceModal"
+            class="close"
+        >
+            ×
+        </button>
+
+        <h2>Add Resource</h2>
+
+        <form id="resourceForm">
+
+            <!-- Resource Name -->
+
+            <input
+                id="resourceName"
+                type="text"
+                placeholder="Resource Name"
+                required
+            >
+
+
+            <!-- Category -->
+
+            <select
+                id="resourceCategory"
+                required
+            >
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option>
+                    Mobile & Computer
+                </option>
+
+                <option>
+                    TV, Appliances & Electronics
+                </option>
+
+                <option>
+                    Sports
+                </option>
+
+                <option>
+                    Men's
+                </option>
+
+                <option>
+                    Women's
+                </option>
+
+                <option>
+                    Kids
+                </option>
+
+                <option>
+                    Books
+                </option>
+
+                <option>
+                    Home & Furniture
+                </option>
+
+                <option>
+                    Art
+                </option>
+
+            </select>
+
+
+            <!-- Description -->
+
+            <textarea
+                id="resourceDescription"
+                placeholder="Description"
+                required
+            ></textarea>
+
+
+            <!-- Condition -->
+
+            <select
+                id="resourceCondition"
+                required
+            >
+
+                <option value="">
+                    Select Condition
+                </option>
+
+                <option>New</option>
+                <option>Like New</option>
+                <option>Good</option>
+                <option>Fair</option>
+
+            </select>
+
+
+            <!-- Location -->
+
+            <div class="location-field">
+
+                <label>Resource Location</label>
+
+                <button
+                    type="button"
+                    id="selectResourceLocation"
+                    class="map-button"
+                >
+                    📍 Select Location on Map
+                </button>
+
+                <input
+                    id="resourceLocation"
+                    type="text"
+                    placeholder="Selected location"
+                    readonly
+                    required
+                >
+
+                <input
+                    id="resourceLatitude"
+                    type="hidden"
+                >
+
+                <input
+                    id="resourceLongitude"
+                    type="hidden"
+                >
+
+            </div>
+
+
+            <!-- Image -->
+
+            <div class="image-field">
+
+                <label>Resource Image</label>
+
+                <input
+                    id="resourceImage"
+                    type="file"
+                    accept="image/*"
+                >
+
+                <img
+                    id="imagePreview"
+                    class="image-preview hidden"
+                    alt="Preview"
+                >
+
+            </div>
+
+
+            <!-- Availability -->
+
+            <select
+                id="resourceAvailability"
+                required
+            >
+
+                <option value="Available">
+                    Available
+                </option>
+
+                <option value="Unavailable">
+                    Unavailable
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Add Resource
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN MODAL -->
+
+<div
+    id="loginModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+        <h2>Welcome Back</h2>
+
+        <form id="loginForm">
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            Don't have an account?
+
+            <button id="showRegister">
+                Register
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- REGISTER MODAL -->
+
+<div
+    id="registerModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+        <h2>Create Account</h2>
+
+        <form id="registerForm">
+
+            <input
+                id="registerName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Password"
+                required
+            >
+
+            <input
+                id="registerConfirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                required
+            >
+
+            <input
+                id="registerLocation"
+                placeholder="Location"
+                value="Pune, Maharashtra"
+            >
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+
+            <button id="showLogin">
+                Login
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- PROFILE PANEL -->
+
+<div
+    id="profilePanel"
+    class="profile-panel"
+>
+
+    <button
+        id="closeProfile"
+        class="close"
+    >
+        ×
+    </button>
+
+    <h2>Profile</h2>
+
+    <div id="profileDetails">
+        Loading...
+    </div>
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+</div>
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<script src="./js/api.js"></script>
+<script src="./js/authGuard.js"></script>
+<script src="./js/auth.js"></script>
+<script src="./js/ui.js"></script>
+<script src="./js/location.js"></script>
+<script src="./js/profile.js"></script>
+<script src="./js/transactions.js"></script>
+</body>
+</html>

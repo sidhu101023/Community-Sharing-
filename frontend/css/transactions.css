@@ -1,0 +1,143 @@
+/* ================================
+   TRANSACTION SECTION
+================================ */
+
+.transaction-section {
+    background: white;
+
+    border-radius: 15px;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, .06);
+}
+
+
+/* ================================
+   TABS
+================================ */
+
+.tabs {
+    display: flex;
+
+    gap: 30px;
+
+    border-bottom: 1px solid #ddd;
+
+    margin: 20px 0;
+}
+
+.request-tab {
+    background: none;
+
+    border: none;
+
+    padding: 12px;
+
+    font-size: 15px;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.request-tab:hover {
+    color: #155eef;
+}
+
+.request-tab.active {
+    color: #155eef;
+
+    border-bottom: 2px solid #155eef;
+
+    font-weight: 600;
+}
+
+
+/* ================================
+   TRANSACTION ROW
+================================ */
+
+.transaction-row {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1.5fr 1.2fr 1fr 1.2fr;
+
+    align-items: center;
+
+    padding: 18px 5px;
+
+    border-bottom: 1px solid #eee;
+
+    gap: 10px;
+}
+
+.transaction-row small {
+    display: block;
+
+    color: #155eef;
+
+    margin-top: 5px;
+}
+
+
+/* BUTTON */
+
+.transaction-row button {
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    border: 1px solid #155eef;
+
+    background: white;
+
+    color: #155eef;
+
+    cursor: pointer;
+}
+
+.transaction-row button:hover {
+    background: #eef4ff;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 800px) {
+
+    .transaction-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .tabs {
+        gap: 10px;
+    }
+
+    .transaction-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.transaction-row button + button {
+    margin-left: 8px;
+}
+
+.status {
+    font-weight: 600;
+    color: #155eef;
+}

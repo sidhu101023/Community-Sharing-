@@ -1,0 +1,104 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 420px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.modal-content textarea {
+    height: 90px;
+}
+
+.modal-content form button {
+    padding: 12px;
+    background: #155eef;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    border: none;
+    background: none;
+    font-size: 25px;
+}
+.profile-panel {
+    position: fixed;
+    top: 0;
+    right: -380px;
+
+    width: 360px;
+    height: 100vh;
+
+    background: white;
+
+    padding: 35px;
+
+    box-shadow:
+        -5px 0 20px rgba(0,0,0,.15);
+
+    z-index: 2000;
+
+    transition: .3s;
+}
+
+.profile-panel.active {
+    right: 0;
+}
+
+.profile-panel h2 {
+    margin-bottom: 30px;
+}
+
+.profile-panel button#logoutBtn {
+    position: absolute;
+    bottom: 30px;
+    left: 35px;
+    right: 35px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #ef4444;
+    color: white;
+}

@@ -1,0 +1,490 @@
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: white;
+
+    padding: 12px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+/* SEARCH INPUT */
+
+.search-input-wrapper {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    background: white;
+}
+
+
+.search-input-wrapper span {
+    font-size: 17px;
+}
+
+
+.search-input-wrapper input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    padding: 14px 5px;
+
+    font-size: 15px;
+}
+
+
+/* DISTANCE */
+
+.distance-input-wrapper {
+    width: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding-right: 10px;
+}
+
+
+.distance-input-wrapper input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    padding: 14px;
+
+    font-size: 15px;
+}
+
+
+.distance-input-wrapper span {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* SEARCH BUTTON */
+
+.search-box button {
+    padding: 14px 28px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #155eef;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.search-box button:hover {
+    background: #0f4dcc;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   RESOURCE CONTAINER
+========================================== */
+
+.resource-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   ONLY TWO ROWS
+========================================== */
+
+.resource-row {
+
+    display: flex;
+
+    gap: 18px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding: 5px 5px 15px;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: thin;
+}
+
+
+/*
+ * Each row scrolls horizontally.
+ */
+
+.resource-row::-webkit-scrollbar {
+    height: 7px;
+}
+
+.resource-row::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* ==========================================
+   RESOURCE CARD
+========================================== */
+
+.resource-card {
+
+    flex: 0 0 250px;
+
+    width: 250px;
+
+    min-width: 250px;
+
+    height: 365px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.resource-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.resource-image-wrapper {
+
+    width: 100%;
+
+    height: 180px;
+
+    flex-shrink: 0;
+
+    background: #f1f5f9;
+
+    overflow: hidden;
+}
+
+
+.resource-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/*
+ * No matter what size image user uploads:
+ *
+ * 1000x1000
+ * 500x200
+ * 200x800
+ *
+ * it will ALWAYS become:
+ *
+ * 250 x 180
+ *
+ * because object-fit: cover
+ */
+
+
+/* ==========================================
+   CARD CONTENT
+========================================== */
+
+.resource-content {
+
+    padding: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+}
+
+
+.resource-content h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.category-text {
+
+    color: #155eef;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+.distance-text {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================
+   REQUEST BUTTON
+========================================== */
+
+.request-btn {
+
+    width: 100%;
+
+    margin-top: auto;
+
+    padding: 11px;
+
+    background: #155eef;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.request-btn:hover {
+
+    background: #0f4dcc;
+}
+
+
+/* OWNER BUTTON */
+
+.request-btn.disabled {
+
+    background: #e2e8f0;
+
+    color: #64748b;
+
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   NO RESULTS
+========================================== */
+
+.resource-message {
+
+    background: white;
+
+    padding: 50px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    color: #64748b;
+}
+
+
+.resource-message h3 {
+
+    color: #111827;
+
+    margin-bottom: 8px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .search-box {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .search-input-wrapper {
+
+        width: 100%;
+
+        flex-basis: 100%;
+    }
+
+
+    .distance-input-wrapper {
+
+        flex: 1;
+
+        width: auto;
+    }
+
+
+    .search-box button {
+
+        flex: 0 0 120px;
+
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .search-box {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .search-input-wrapper {
+
+        width: 100%;
+
+    }
+
+
+    .distance-input-wrapper {
+
+        width: 100%;
+
+    }
+
+
+    .search-box button {
+
+        width: 100%;
+
+    }
+
+
+    .resource-card {
+
+        flex: 0 0 220px;
+
+        width: 220px;
+
+        min-width: 220px;
+
+    }
+
+
+    .resource-row {
+
+        gap: 12px;
+
+    }
+
+}
