@@ -81,6 +81,12 @@ const resourceSchema = new mongoose.Schema(
                 "Unavailable"
             ],
             default: "Available"
+        },
+
+        isDemo: {
+            type: Boolean,
+            default: false,
+            index: true
         }
     },
     {

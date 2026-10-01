@@ -488,3 +488,25 @@
     }
 
 }
+
+.recommendation-section {
+    margin-bottom: 28px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.section-heading h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.section-heading span {
+    color: #64748b;
+    font-size: 13px;
+}

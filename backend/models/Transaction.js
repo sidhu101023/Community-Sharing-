@@ -32,6 +32,28 @@ const transactionSchema = new mongoose.Schema(
             default: "Pending"
         },
 
+        requesterCompleted: {
+            type: Boolean,
+            default: false
+        },
+
+        ownerCompleted: {
+            type: Boolean,
+            default: false
+        },
+
+        approvedAt: {
+            type: Date
+        },
+
+        completedAt: {
+            type: Date
+        },
+
+        cancelledAt: {
+            type: Date
+        },
+
         statusHistory: [{
             status: {
                 type: String,
@@ -47,6 +69,11 @@ const transactionSchema = new mongoose.Schema(
     {
         timestamps: true
     }
+);
+
+transactionSchema.index(
+    { resource: 1, requester: 1 },
+    { unique: true, partialFilterExpression: { status: "Pending" } }
 );
 
 module.exports = mongoose.model("Transaction", transactionSchema);

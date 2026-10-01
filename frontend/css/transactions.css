@@ -133,6 +133,47 @@
 
 }
 
+.transaction-resource {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.transaction-resource img {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex: 0 0 auto;
+}
+
+.transaction-resource strong,
+.transaction-row > div {
+    overflow-wrap: anywhere;
+}
+
+.transaction-label,
+.inline-note,
+.completion-state {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.transaction-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.transaction-message {
+    color: #64748b;
+    margin: 8px 0;
+}
+
 .transaction-row button + button {
     margin-left: 8px;
 }
@@ -140,4 +181,14 @@
 .status {
     font-weight: 600;
     color: #155eef;
+}
+
+.contact-info {
+    margin: 0 0 14px 5px;
+    padding: 10px;
+    color: #166534;
+    background: #f0fdf4;
+    border-left: 3px solid #22c55e;
+    font-size: 13px;
+    line-height: 1.6;
 }

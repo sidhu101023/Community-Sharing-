@@ -4,7 +4,10 @@ const {
     requestResource,
     getMyRequests,
     getResourceRequests,
-    updateStatus
+    getActiveTransactions,
+    getTransactionHistory,
+    updateStatus,
+    completeTransaction
 } = require("../controllers/transactionController");
 
 const protect =
@@ -30,10 +33,28 @@ router.get(
     getResourceRequests
 );
 
+router.get(
+    "/active",
+    protect,
+    getActiveTransactions
+);
+
+router.get(
+    "/history",
+    protect,
+    getTransactionHistory
+);
+
 router.put(
     "/:id/status",
     protect,
     updateStatus
+);
+
+router.put(
+    "/:id/complete",
+    protect,
+    completeTransaction
 );
 
 module.exports = router;

@@ -5,6 +5,22 @@ const resourceContainer =
 
 let selectedCategory = "All Resources";
 
+async function loadRecommendations() {
+    const container = document.getElementById("recommendedContainer");
+    if (!container) return;
+    try {
+        const resources = await apiRequest("/resources/recommended");
+        container.innerHTML = "";
+        if (!resources.length) {
+            container.innerHTML = "<p class=\"resource-message\">No recommendations yet.</p>";
+            return;
+        }
+        resources.forEach(resource => container.appendChild(createResourceCard(resource)));
+    } catch (error) {
+        container.innerHTML = "<p class=\"resource-message\">Recommendations are unavailable right now.</p>";
+    }
+}
+
 
 /* ==========================================
    LOAD RESOURCES
@@ -487,9 +503,11 @@ function createResourceCard(
         "https://via.placeholder.com/400x250?text=No+Image";
 
 
-    const distance = Number.isFinite(resource.distance)
-        ? resource.distance
-        : getResourceDistance(resource);
+    const distance = Number.isFinite(resource.distanceKm)
+        ? resource.distanceKm
+        : Number.isFinite(resource.distance)
+            ? resource.distance
+            : getResourceDistance(resource);
 
 
     let distanceText =
@@ -583,6 +601,20 @@ function createResourceCard(
                     Your Resource
                 </button>
                 `
+
+                : resource.requestStatus === "Pending"
+
+                ? `
+                <button class="request-btn disabled" disabled>
+                    Request Pending
+                </button>`
+
+                : resource.requestStatus === "Approved"
+
+                ? `
+                <button class="request-btn disabled" disabled>
+                    Active Transaction
+                </button>`
 
                 : resource.availability !== "Available"
 
@@ -693,9 +725,9 @@ async function requestResource(
         );
 
 
-        alert(
-            "Resource request sent!"
-        );
+        alert("Request sent successfully.");
+        await loadResources();
+        await loadRecommendations();
 
 
     } catch (error) {
@@ -1096,6 +1128,8 @@ function escapeHTML(value) {
         );
 
 }
+
+loadRecommendations();
 
 function imageToDataUrl(input) {
     const file = input?.files?.[0];

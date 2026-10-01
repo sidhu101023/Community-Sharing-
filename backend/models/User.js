@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema(
             required: true
         },
 
+        phone: {
+            type: String,
+            trim: true,
+            match: [/^\+?[0-9]{10,15}$/, "Please provide a valid mobile number"]
+        },
+
         /*
          * User location
          *
@@ -50,6 +56,12 @@ const userSchema = new mongoose.Schema(
         profileImage: {
             type: String,
             default: ""
+        },
+
+        isDemo: {
+            type: Boolean,
+            default: false,
+            index: true
         }
     },
     {

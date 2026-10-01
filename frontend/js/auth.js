@@ -234,6 +234,8 @@ if (registerForm) {
                     "registerConfirmPassword"
                 ).value;
 
+            const phone = document.getElementById("registerPhone")?.value.trim() || "";
+
 
             const locationAddress = document.getElementById("registerLocation").value.trim();
 
@@ -258,7 +260,8 @@ if (registerForm) {
                 !name ||
                 !email ||
                 !password ||
-                !confirmPassword
+                !confirmPassword ||
+                !phone
             ) {
 
                 alert(
@@ -267,6 +270,11 @@ if (registerForm) {
 
                 return;
 
+            }
+
+            if (!/^\+?[0-9]{10,15}$/.test(phone)) {
+                alert("Please enter a valid mobile number.");
+                return;
             }
 
 
@@ -309,6 +317,7 @@ if (registerForm) {
                     name,
                     email,
                     password,
+                    phone,
                     location: {
                         address: locationAddress,
                         latitude: Number(latitude),

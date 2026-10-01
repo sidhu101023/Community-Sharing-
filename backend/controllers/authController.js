@@ -26,6 +26,7 @@ exports.register = async (req, res) => {
             name,
             email,
             password,
+            phone,
             location
         } = req.body;
 
@@ -34,6 +35,7 @@ exports.register = async (req, res) => {
             !name ||
             !email ||
             !password ||
+            !phone ||
             !location
         ) {
 
@@ -44,6 +46,10 @@ exports.register = async (req, res) => {
 
             });
 
+        }
+
+        if (!/^\+?[0-9]{10,15}$/.test(phone)) {
+            return res.status(400).json({ message: "Please provide a valid mobile number" });
         }
 
 
@@ -97,6 +103,8 @@ exports.register = async (req, res) => {
 
                 password:
                     hashedPassword,
+
+                phone: phone || undefined,
 
                 location: {
 
@@ -179,6 +187,7 @@ exports.login = async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
+                phone: user.phone,
                 location: user.location
             }
         });

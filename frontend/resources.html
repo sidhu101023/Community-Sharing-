@@ -154,6 +154,14 @@
 </div>
 
 
+        <section class="recommendation-section">
+            <div class="section-heading">
+                <h1>Recommended for You</h1>
+                <span>Based on your requests, availability and distance</span>
+            </div>
+            <div id="recommendedContainer" class="resource-row"></div>
+        </section>
+
         <div
             id="resourceContainer"
             class="resource-grid"
@@ -517,6 +525,8 @@
                 placeholder="Confirm Password"
                 required
             >
+
+            <input id="registerPhone" type="tel" placeholder="Mobile number" pattern="\+?[0-9]{10,15}" required>
 
             <!-- Location -->
             <div class="location-section">

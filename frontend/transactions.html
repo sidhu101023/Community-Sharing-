@@ -193,10 +193,20 @@
 
     <section class="transaction-section">
 
-        <h2>My Resources</h2>
+        <h2>Requests for My Resources</h2>
 
         <div id="myResources"></div>
 
+    </section>
+
+    <section class="transaction-section">
+        <h2>Active Transactions</h2>
+        <div id="activeTransactions"></div>
+    </section>
+
+    <section class="transaction-section">
+        <h2>Transaction History</h2>
+        <div id="transactionHistory"></div>
     </section>
 
 </main>
@@ -482,6 +492,8 @@
                 placeholder="Confirm Password"
                 required
             >
+
+            <input id="registerPhone" type="tel" placeholder="Mobile number" pattern="\+?[0-9]{10,15}" required>
 
             <input
                 id="registerLocation"

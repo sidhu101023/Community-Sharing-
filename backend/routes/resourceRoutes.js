@@ -21,6 +21,8 @@ router.get(
     getResources
 );
 
+router.get("/recommended", protect, require("../controllers/resourceController").getRecommendedResources);
+
 
 // GET SINGLE RESOURCE
 router.get(

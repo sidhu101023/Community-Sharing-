@@ -1,4 +1,8 @@
-const API_URL = "/api";
+// Live Server uses port 5500, while the Express API runs on port 5000.
+// When the frontend is served by Express, a relative URL remains correct.
+const API_URL = window.location.port === "5500" || window.location.protocol === "file:"
+    ? `http://${window.location.hostname || "localhost"}:5000/api`
+    : "/api";
 
 
 async function apiRequest(endpoint, options = {}) {
@@ -29,14 +33,22 @@ async function apiRequest(endpoint, options = {}) {
         );
 
 
-        // Try to read JSON response
-        const data = await response.json();
+        const responseText = await response.text();
+        let data = {};
+
+        if (responseText.trim()) {
+            try {
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                throw new Error(`The server returned an invalid response (${response.status}).`);
+            }
+        }
 
 
         if (!response.ok) {
 
             throw new Error(
-                data.message || "Something went wrong"
+                data.message || `Request failed with status ${response.status}`
             );
 
         }
